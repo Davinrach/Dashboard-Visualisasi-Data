@@ -1,0 +1,96 @@
+/* ==== GLOBAL DARK BACKGROUND ==== */
+html, body, .main, .block-container {
+  background-color: #0f1117 !important;
+  color: #ffffff !important;
+}
+
+/* ==== HEADINGS ==== */
+h1, h2, h3, .st-emotion-cache-10trblm {
+  color: #58a6ff !important;
+  font-weight: 600 !important;
+}
+
+/* ==== SELECTBOX ==== */
+.stSelectbox, .st-emotion-cache-1gulkj5 {
+  background-color: #3b4d68 !important;
+  color: #ffffff !important;
+  border-radius: 8px !important;
+}
+
+/* ==== KPI METRICS ==== */
+[data-testid="stMetric"] {
+  background-color: #3b4d68 !important;
+  padding: 1rem !important;
+  border-radius: 12px !important;
+  margin-bottom: 1rem;
+  color: #ffffff !important;
+  box-shadow: 0 0 10px rgba(88, 166, 255, 0.2) !important;
+}
+
+/* ==== POSITIVE/NEGATIVE COLORS ==== */
+[data-testid="stMetricDeltaPositive"] {
+  color: #00ff9d !important;
+}
+[data-testid="stMetricDeltaNegative"] {
+  color: #ff4c4c !important;
+}
+
+/* ==== DATAFRAME TABLE ==== */
+[data-testid="stDataFrame"] {
+  background-color: #161b22 !important;
+  border-radius: 10px;
+  color: #ffffff;
+}
+
+/* ==== BUTTON ==== */
+button[kind="primary"] {
+  background-color: #58a6ff !important;
+  color: white !important;
+  border: none;
+  border-radius: 8px;
+  padding: 0.6rem 1.2rem;
+  font-weight: bold;
+  box-shadow: 0 4px 10px rgba(88, 166, 255, 0.3);
+}
+button[kind="primary"]:hover {
+  background-color: #1f6feb !important;
+}
+
+/* ==== REMOVE WHITE BORDER LINE (TOP NAV) ==== */
+header[data-testid="stHeader"] {
+  background: transparent;
+  border-bottom: none;
+}
+
+/* ==== CHART BACKGROUND FIX ==== */
+.js-plotly-plot .plotly {
+  background-color: #0f1117 !important;
+}
+
+/* ==== PERBAIKAN WARNA TEKS DI METRIC BOX ==== */
+[data-testid="stMetric"] div {
+  color: #ffffff !important;
+}
+
+/* ==== PERBAIKAN KHUSUS UNTUK LABEL DAN VALUE ==== */
+[data-testid="stMetricLabel"] {
+  color: #ffffff !important;
+  font-weight: bold !important;
+}
+
+[data-testid="stMetricValue"] {
+  color: #ffffff !important;
+  font-size: 1.5rem !important;
+}
+
+/* ==== SIDEBAR (NAVBAR KIRI) DARK MODE ==== */
+section[data-testid="stSidebar"] {
+  background-color: #161b22 !important;
+  color: #ffffff !important;
+}
+
+/* ==== TEKS DI SIDEBAR ==== */
+section[data-testid="stSidebar"] * {
+  color: #ffffff !important;
+}
+
