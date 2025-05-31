@@ -87,6 +87,8 @@ header[data-testid="stHeader"] {
 section[data-testid="stSidebar"] {
   background-color: #161b22 !important;
   color: #ffffff !important;
+  font-size: 20px !important;
+  font-weight: 600 !important;
 }
 
 /* ==== TEKS DI SIDEBAR ==== */
@@ -94,3 +96,55 @@ section[data-testid="stSidebar"] * {
   color: #ffffff !important;
 }
 
+/* ==== PERBESAR SEMUA TEKS DI SIDEBAR ==== */
+section[data-testid="stSidebar"] {
+  font-size: 20px !important;
+  font-weight: 600 !important;
+}
+
+/* ==== PERBESAR RADIO NAVIGASI ==== */
+section[data-testid="stSidebar"] .stRadio > div {
+  gap: 10px;
+}
+section[data-testid="stSidebar"] .stRadio > div label {
+  font-size: 24px !important;
+  font-weight: bold !important;
+}
+
+/* ==== PERBESAR SELECTBOX DAN MULTISELECT ==== */
+section[data-testid="stSidebar"] .stSelectbox,
+section[data-testid="stSidebar"] .stMultiSelect {
+  font-size: 18px !important;
+}
+
+section[data-testid="stSidebar"] .stSelectbox label,
+section[data-testid="stSidebar"] .stMultiSelect label {
+  font-size: 18px !important;
+  font-weight: 600 !important;
+}
+
+/* ==== PERBESAR ITEM PILIHAN MULTISELECT ==== */
+section[data-testid="stSidebar"] .stMultiSelect .css-12w0qpk {
+  font-size: 18px !important;
+}
+
+
+
+/* ==== PERBESAR TEKS UTAMA DI KONTEN TENGAH ==== */
+html, body, .main, .block-container, .stMarkdown, p, span, div {
+  font-size: 18px !important;
+}
+
+
+/* ==== FIX HEADER TRANSPARAN SAAT DISCROLL ==== */
+header[data-testid="stHeader"] {
+  background-color: #0f1117 !important;
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid #30363d !important;
+  z-index: 1000;
+}
+
+/* ==== ATUR JARAK KIRI UNTUK LABEL PILIH TAHUN ==== */
+section[data-testid="stSidebar"] label {
+  margin-left: 10px; /* Atau ubah ke 16px, 20px sesuai selera */
+}
