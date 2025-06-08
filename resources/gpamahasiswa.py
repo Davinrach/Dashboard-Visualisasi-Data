@@ -70,7 +70,7 @@ try:
                 for code, name in prodi_items[mid_point:]:
                     st.write(f"**{code}**: {name}")
 
-        st.markdown("### Statistik Dasar (semua tahun dan prodi)")
+        # st.markdown("### Statistik Dasar (semua tahun dan program studi)")
         col1, col2, col3, col4 = st.columns(4)
 
         with col1:
@@ -81,6 +81,12 @@ try:
             st.metric("Rata-rata IPK", f"{df['IPK'].mean():.2f}")
         with col4:
             st.metric("IPK Tertinggi", f"{df['IPK'].max():.2f}")
+
+        st.subheader("Tren IPK dari Waktu ke Waktu (Semua Prodi)")
+        trend_data = df.groupby(['Tahun', 'Prodi'])['IPK'].mean().reset_index()
+        fig_line = px.line(trend_data, x='Tahun', y='IPK', color='Prodi', markers=True)
+        fig_line.update_layout(legend_title_text='Program Studi')
+        st.plotly_chart(fig_line, use_container_width=True)
 
     elif menu == "Visualisasi Data":
         st.markdown('<h1 class="main-title">Visualisasi Data</h1>', unsafe_allow_html=True)
@@ -94,23 +100,44 @@ try:
 
         df_filtered = df[(df['Tahun'] == tahun_terpilih) & (df['Prodi'].isin(prodi_terpilih))]
 
+        col1, col2 = st.columns(2)
+        
         # Pie Chart Kategori IPK
-        st.subheader("Distribusi Kategori IPK")
-        df_filtered_copy = df_filtered.copy()
-        df_filtered_copy['Kategori IPK'] = df_filtered_copy['IPK'].apply(kategori_ipk)
-        kategori_data = df_filtered_copy['Kategori IPK'].value_counts()
-
-        if not kategori_data.empty:
-            fig_pie = px.pie(values=kategori_data.values, names=kategori_data.index)
-            st.plotly_chart(fig_pie, use_container_width=True)
-
-        # Bar Chart Rata-rata IPK per Prodi
-        st.subheader("Rata-rata IPK per Prodi")
-        if not df_filtered.empty:
-            avg_ipk = df_filtered.groupby('Prodi')['IPK'].mean().reset_index()
-            fig_bar = px.bar(avg_ipk, x='Prodi', y='IPK', color='IPK', color_continuous_scale='Blues')
-            fig_bar.update_layout(xaxis_tickangle=-45)
-            st.plotly_chart(fig_bar, use_container_width=True)
+        with col1:
+            st.subheader("Kategori IPK")
+            # Buat kategori IPK untuk data yang sudah difilter
+            df_filtered_copy = df_filtered.copy()
+            df_filtered_copy['Kategori IPK'] = df_filtered_copy['IPK'].apply(kategori_ipk)
+            kategori_data = df_filtered_copy['Kategori IPK'].value_counts()
+            
+            if len(kategori_data) > 0:
+                fig_pie = px.pie(
+                    values=kategori_data.values,
+                    names=kategori_data.index,
+                    title=f"Distribusi Kategori IPK - Tahun {tahun_terpilih}"
+                )
+                st.plotly_chart(fig_pie, use_container_width=True)
+            else:
+                st.warning("Tidak ada data untuk ditampilkan")
+        
+        # Bar Chart IPK per Prodi
+        with col2:
+            st.subheader("IPK per Program Studi")
+            if len(df_filtered) > 0:
+                avg_ipk = df_filtered.groupby('Prodi')['IPK'].mean().reset_index()
+                
+                fig_bar = px.bar(
+                    avg_ipk, 
+                    x='Prodi', 
+                    y='IPK',
+                    title=f"Rata-rata IPK per Prodi - Tahun {tahun_terpilih}",
+                    color='IPK',
+                    color_continuous_scale='Blues'
+                )
+                fig_bar.update_layout(xaxis_tickangle=-45)
+                st.plotly_chart(fig_bar, use_container_width=True)
+            else:
+                st.warning("Tidak ada data untuk ditampilkan")
 
         # Line Chart Tren IPK
         st.subheader("Tren IPK dari Waktu ke Waktu")
